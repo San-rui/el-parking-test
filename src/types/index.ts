@@ -22,3 +22,10 @@ export type QuestionState = {
     answers: string[],
     question: Question,
 }
+
+export type AnswerObject = {
+    question: string,
+    answer: string,
+    correct: boolean,
+    correctAnswer: string,
+}

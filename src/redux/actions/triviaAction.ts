@@ -1,5 +1,5 @@
 import { mapToArray } from "../../helpers";
-import { Question, QuestionState } from "../../types";
+import { QuestionState } from "../../types";
 import { apiTrivia } from "../../uttils/axios"
 import { types } from "../types";
 

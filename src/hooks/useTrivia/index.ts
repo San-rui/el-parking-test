@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {  useDispatch, useSelector } from "react-redux";
 import { processTrivia } from "../../redux/actions/triviaAction";
-import { Question } from "../../types";
+import { QuestionState } from "../../types";
 
 type Store={
     trivia:{
-        items: Question[],
+        items: QuestionState[],
         error: {errorCode:string }|null,
         loading: false,
     }
@@ -13,9 +13,10 @@ type Store={
 
 const useTrivia = () =>{
 
-
     const dispatch = useDispatch()
     const  { items, loading }  = useSelector((state: Store) => state.trivia)
+
+    console.log("loading",loading)
 
     useEffect ( () => {
 
@@ -23,19 +24,7 @@ const useTrivia = () =>{
 
     },[dispatch])
 
-    const startTrivia = async () => {
-
-    }
-
-    const checkAnswer = (e: React.MouseEvent<HTMLButtonElement> ) => {
-
-    }
-
-    const nextQuestion = () => {
-
-    }
-
-    return { items, loading , startTrivia, checkAnswer, nextQuestion }
+    return { items, loading }
 
 }
 
