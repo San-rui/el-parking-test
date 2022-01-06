@@ -1,4 +1,4 @@
-import { TriviaState, TriviaReducer } from "../../types";
+import { TriviaState, TriviaReducer} from "../../types";
 import { types } from "../types";
 
 const intialState: TriviaState = {

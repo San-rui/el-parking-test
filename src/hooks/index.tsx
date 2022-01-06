@@ -1,0 +1,1 @@
+export { useTrivia } from './useTrivia'
