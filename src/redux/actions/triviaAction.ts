@@ -1,9 +1,10 @@
-import { Question } from "../../types";
+import { mapToArray } from "../../helpers";
+import { Question, QuestionState } from "../../types";
 import { apiTrivia } from "../../uttils/axios"
 import { types } from "../types";
 
 
-export const processTrivia = (amount: number, difficulty: string) =>{
+export const processTrivia = ( difficulty: string) =>{
 
     return async (dispatch: any) => {
 
@@ -11,8 +12,8 @@ export const processTrivia = (amount: number, difficulty: string) =>{
 
         try {
             
-            const response = await (await fetch(`https://opentdb.com/api.php?amount=${amount}&category=17&difficulty=${difficulty}&type=multiple`)).json();
-            dispatch(okTrivia(response.results));
+            const response = await (await fetch(`https://opentdb.com/api.php?amount=10&category=17&difficulty=${difficulty}&type=multiple`)).json();
+            dispatch(okTrivia(mapToArray(response.results)));
         
         } catch (err) {
             dispatch(deniedTrivia(err));
@@ -25,7 +26,7 @@ const startTrivia = () => ({
     payload: [],
 });
 
-const okTrivia = (data: Question[]) => ({
+const okTrivia = (data: QuestionState[]) => ({
     type: types.triviaOk,
     payload: data,
 });
