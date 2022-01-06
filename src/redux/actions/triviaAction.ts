@@ -12,7 +12,7 @@ export const processTrivia = ( difficulty: string) =>{
 
         try {
             
-            const response = await (await fetch(`https://opentdb.com/api.php?amount=10&category=17&difficulty=${difficulty}&type=multiple`)).json();
+            const response = await (await fetch(`https://opentdb.com/api.php?amount=10&category=27&difficulty=${difficulty}&type=multiple`)).json();
             dispatch(okTrivia(mapToArray(response.results)));
         
         } catch (err) {

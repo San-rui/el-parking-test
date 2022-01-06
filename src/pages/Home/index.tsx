@@ -3,8 +3,7 @@ import { CardQuestion } from "../../components/common";
 import { Layout } from "../../components/layout";
 import { useTrivia } from "../../hooks";
 import { useGame } from "../../hooks/useGame";
-
-
+import { Wrapper } from "../../styles/HomeStyle";
 
 const Home :FC= () =>{
 
@@ -15,7 +14,7 @@ const Home :FC= () =>{
 
     return(
         <Layout>
-            <div className="home">
+            <Wrapper>
                 <h1>El Parking Quiz</h1>
                 { gameOver || userAnswers.length ===10 ? (<button className="start" onClick={startTrivia}> Start</button>) : null }
                 
@@ -32,8 +31,7 @@ const Home :FC= () =>{
                 )}
                 { !gameOver && !loading && userAnswers.length === number +1 && number !== 9? (<button className="next" onClick={nextQuestion}> Next Question</button>): null}
                 { !gameOver ? <p className="score">Score: {score}</p> : null } 
-            </div>
-
+            </Wrapper>
         </Layout>
     )
 }
