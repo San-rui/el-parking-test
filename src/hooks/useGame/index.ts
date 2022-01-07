@@ -10,6 +10,27 @@ const useGame = () =>{
     const [ score, setScore] = useState (0);
     const [userAnswers, setUserAnswers] = useState <AnswerObject[]> ([]);
 
+    const [seconds, setSeconds] = useState(30);
+
+
+    useEffect(() => {
+        
+        if (seconds > 0) {
+            setTimeout(() => setSeconds(seconds - 1), 1000);
+        } 
+
+    },[seconds, gameOver])
+
+    useEffect(()=>{
+
+        if(seconds===0){
+            nextQuestion()
+            setSeconds(30)
+        }
+        
+    },[seconds])
+    
+
     const  { items}  = useTrivia();
     console.log(items)
 
@@ -19,6 +40,7 @@ const useGame = () =>{
         setScore(0)
         setNumber(0);
         setUserAnswers([])
+        setSeconds(30)
     }
 
     const checkAnswer = (e: React.MouseEvent<HTMLButtonElement> ) => {
@@ -52,7 +74,7 @@ const useGame = () =>{
 
     }
 
-    return { startTrivia, checkAnswer, nextQuestion, gameOver, questionsItems, number, score, userAnswers }
+    return { startTrivia, checkAnswer, nextQuestion, gameOver, questionsItems, number, score, userAnswers, seconds }
 
 }
 
