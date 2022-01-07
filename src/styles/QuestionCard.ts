@@ -16,12 +16,12 @@ export const Wrapper = styled.div`
 
     }
 `
-type ButtonPropps ={
+type ButtonProps ={
     correct: boolean,
     userClick: boolean,
 }
 
-export const Button = styled.div<ButtonPropps>`
+export const Button = styled.div<ButtonProps>`
     trasition : all 0.3s ease;
     
     :hover {

@@ -1,12 +1,12 @@
 import { FC } from "react";
-import { CardQuestion } from "../../components/common";
+import { CardQuestion, ProgressBar } from "../../components/common";
 import { Layout } from "../../components/layout";
 import { useGame, useTrivia } from "../../hooks";
 import { Wrapper } from "../../styles/HomeStyle";
 
 const Home :FC= () =>{
 
-    const { startTrivia, checkAnswer, nextQuestion, gameOver, questionsItems, number, score, userAnswers, seconds } = useGame()
+    const { startTrivia, checkAnswer, nextQuestion, gameOver, questionsItems, number, score, userAnswers, seconds, status } = useGame()
 
     const { loading } = useTrivia();
 
@@ -31,6 +31,7 @@ const Home :FC= () =>{
                 { !gameOver && !loading && userAnswers.length === number +1 && number !== 9? (<button className="next" onClick={nextQuestion}> Next Question</button>): null}
                 { !gameOver ? <p className="score">Score: {score}</p> : null }
                 { !loading && !gameOver &&  (<p className="score">Time: {seconds}</p>)}
+                { !loading && !gameOver &&  (<ProgressBar percent={(seconds*100)/30} status={status}/>)}
                 
             </Wrapper>
         </Layout>
