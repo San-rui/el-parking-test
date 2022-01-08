@@ -49,4 +49,8 @@ export const Button = styled.div<ButtonProps>`
         border-radius:2rem;
 
     }
+
+    button:hover{
+        background-color: #f77f00;
+    }
 `

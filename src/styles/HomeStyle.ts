@@ -5,11 +5,12 @@ import backgroundImage from '../assets/images/backgroundImage.jpeg'
 
 export const Wrapper = styled.div`
     width: 99vw;
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url('https://images.pexels.com/photos/2246476/pexels-photo-2246476.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background-image: url('https://images.pexels.com/photos/3560168/pexels-photo-3560168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
     background-size:cover;
     background-position: left;
     padding: 5%;
@@ -44,5 +45,9 @@ export const Wrapper = styled.div`
         justify-content: center;
         align-items: center;
         font-family: 'Sansita', sans-serif;
+    }
+
+    .loading{
+        background-color: #ffff;
     }
 `
