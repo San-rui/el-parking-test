@@ -16,8 +16,6 @@ const useTrivia = () =>{
     const dispatch = useDispatch()
     const  { items, loading }  = useSelector((state: Store) => state.trivia)
 
-    console.log("loading",loading)
-
     useEffect ( () => {
 
         dispatch(processTrivia("medium"))

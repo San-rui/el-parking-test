@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { CardQuestion, ProgressBar } from "../../components/common";
 import { Layout } from "../../components/layout";
-import { useGame, useTrivia } from "../../hooks";
+import { useGame, useTime, useTrivia } from "../../hooks";
 import { Wrapper } from "../../styles/HomeStyle";
 
 const Home :FC= () =>{
@@ -10,14 +10,13 @@ const Home :FC= () =>{
 
     const { loading } = useTrivia();
 
-
     return(
         <Layout>
             <Wrapper>
                 <h1>El Parking Quiz</h1>
                 { gameOver || userAnswers.length ===10 ? (<button className="start" onClick={startTrivia}> Start</button>) : null }
                 
-                { loading && <p> Loading questions...</p>}
+                { loading && <p className="loading"> Loading questions...</p>}
                 { !loading && !gameOver && (
                     <CardQuestion 
                     questionNumber={number + 1}

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { useTrivia } from "..";
+import { useTime, useTrivia } from "..";
 import {  AnswerObject, QuestionState } from "../../types";
 
 const useGame = () =>{
+
+    const { seconds, reStart, stopTime   } = useTime();
 
     const [ gameOver, setgameOver] = useState (true);
     const [questionsItems, setQuestionsItems] = useState <QuestionState[]>([]);
@@ -11,16 +13,10 @@ const useGame = () =>{
     const [userAnswers, setUserAnswers] = useState <AnswerObject[]> ([]);
     const [status, setStatus] = useState('active')
 
-    const [seconds, setSeconds] = useState(30);
-
-
     useEffect(() => {
         
-        if (seconds > 0) {
-            setTimeout(() => setSeconds(seconds - 1), 1000);
-        } else if(seconds===0){
+        if(seconds===0){
             nextQuestion()
-            setSeconds(30)
         }
 
     },[ gameOver, seconds ])
@@ -46,11 +42,15 @@ const useGame = () =>{
         setScore(0)
         setNumber(0);
         setUserAnswers([])
+        reStart() 
         
     }
 
     const checkAnswer = (e: React.MouseEvent<HTMLButtonElement> ) => {
         if( !gameOver ){
+            
+            stopTime () 
+
             const answer = e.currentTarget.value;
             const correct =questionsItems[number].question.correct_answer === answer;
 
@@ -68,6 +68,8 @@ const useGame = () =>{
     }
 
     const nextQuestion = () => {
+
+        reStart() 
 
         const nextQuestion = number +1;
 

@@ -20,7 +20,7 @@ const ProgressBar: FC <Props>= ({ percent, status }) => {
             theme={
                 {
                     error: {
-                        symbol:nunber + '%',
+                        symbol: '💀',
                         trailColor: 'pink',
                         color: 'red'
                     },
@@ -30,12 +30,12 @@ const ProgressBar: FC <Props>= ({ percent, status }) => {
                         color: 'blue'
                     },
                     active: {
-                        symbol: nunber + '%',
+                        symbol: '😀',
                         trailColor: 'yellow',
                         color: 'orange'
                     },
                     success: {
-                        symbol: nunber + '%',
+                        symbol: '⭐️',
                         trailColor: 'lime',
                         color: 'green'
                     }
