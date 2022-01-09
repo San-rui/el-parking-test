@@ -12,7 +12,7 @@ function App() {
       <GlobalStyle/>
       <BrowserRouter>
         <Switch>
-        <Route path="/dashboard" component={Dashboard} />
+          <Route path="/dashboard" component={Dashboard} />
           <Route path="/" component={Home} />
         </Switch>
       </BrowserRouter>

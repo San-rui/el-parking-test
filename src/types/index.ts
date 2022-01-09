@@ -36,6 +36,7 @@ export type UserGame ={
     questions?: QuestionState[],
     score?: number,
     time?:number,
+    level?: string,
 }
 
 export type StoreUser={
