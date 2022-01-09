@@ -17,6 +17,7 @@ export const userGameReducer = (state=initialState, action: any) =>{
                 questions: action.payload.questions,
                 score: action.payload.score,
                 time: action.payload.time,
+                level: action.payload.level,
             }: state
 
         case types.usersError:

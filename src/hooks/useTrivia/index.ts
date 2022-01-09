@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {  useDispatch, useSelector } from "react-redux";
 import { processTrivia } from "../../redux/actions/triviaAction";
 import { QuestionState } from "../../types";
@@ -18,7 +18,7 @@ const useTrivia = () =>{
 
     useEffect ( () => {
 
-        dispatch(processTrivia("medium"))
+        dispatch(processTrivia('medium'))
 
     },[dispatch])
 

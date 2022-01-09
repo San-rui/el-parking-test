@@ -7,17 +7,26 @@ import { Wrapper } from "../../styles/HomeStyle";
 
 const Home :FC= () =>{
 
-    const { startTrivia, checkAnswer, nextQuestion, gameOver, questionsItems, number, score, userAnswers, seconds, status } = useGame()
-
+    const { startTrivia, checkAnswer, nextQuestion, gameOver, questionsItems, number, score, userAnswers, seconds, status, currentUserGame, setName } = useGame()
     const { loading } = useTrivia();
 
     return(
         <Layout>
             <Wrapper>
                 <h1>El Parking Quiz</h1>
-                { gameOver || userAnswers.length ===10 ? (<button className="start" onClick={startTrivia}> Start</button>) : null }
                 
+                { gameOver || userAnswers.length ===10 ? (<input id="name" 
+                    type="text" name="name" 
+                    placeholder="Enter your name" 
+                    value={currentUserGame.name}
+                    onChange={e =>{ 
+                        setName(e.target.value)
+                    }}
+                />) : null }
+                
+                { gameOver || userAnswers.length ===10 ? (<button className="start" onClick={startTrivia}> Start Game</button>) : null }
                 { loading && <p className="loading"> Loading questions...</p>}
+                { !loading && !gameOver && (<p>Hi {currentUserGame.name} this is your question number {number + 1}</p>)}
                 { !loading && !gameOver && (
                     <CardQuestion 
                     questionNumber={number + 1}
@@ -28,6 +37,7 @@ const Home :FC= () =>{
                     callback={checkAnswer}
                 />
                 )}
+                
                 { !gameOver && !loading && userAnswers.length === number +1 && number !== 9? (<button className="next" onClick={nextQuestion}> Next Question</button>): null}
                 { !gameOver ? <p className="score">Partial Score: {score}</p> : null }
                 { !loading && !gameOver &&  (<p className="score">Time: {seconds}</p>)}
