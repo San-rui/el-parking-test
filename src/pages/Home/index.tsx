@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Link } from "react-router-dom";
 import { CardQuestion, ProgressBar } from "../../components/common";
 import { Layout } from "../../components/layout";
 import { useGame, useTime, useTrivia } from "../../hooks";
@@ -28,11 +29,12 @@ const Home :FC= () =>{
                 />
                 )}
                 { !gameOver && !loading && userAnswers.length === number +1 && number !== 9? (<button className="next" onClick={nextQuestion}> Next Question</button>): null}
-                { !gameOver ? <p className="score">Score: {score}</p> : null }
+                { !gameOver ? <p className="score">Partial Score: {score}</p> : null }
                 { !loading && !gameOver &&  (<p className="score">Time: {seconds}</p>)}
                 { !loading && !gameOver &&  (<ProgressBar percent={(seconds*100)/30} status={status}/>)}
-                
+                { userAnswers.length ===10 ? (<Link to='./dashboard'> Go to Results</Link>) : null }
             </Wrapper>
+            
         </Layout>
     )
 }

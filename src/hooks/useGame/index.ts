@@ -1,8 +1,16 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useTime, useTrivia } from "..";
-import {  AnswerObject, QuestionState } from "../../types";
+import {  AnswerObject, QuestionState, StoreUser, UserGame } from "../../types";
+import { processUserGame } from "../../redux/actions/user";
+
 
 const useGame = () =>{
+
+    const currentUserGame =useSelector((store:StoreUser)=>store.userGame);
+    const dispatch = useDispatch();
+
+    console.log(currentUserGame)
 
     const { seconds, reStart, stopTime   } = useTime();
 
@@ -33,10 +41,18 @@ const useGame = () =>{
 
     },[seconds])
     
-
     const  { items}  = useTrivia();
+    
+    useEffect ( () => {
+
+        dispatch(processUserGame( currentUserGame ))
+
+    },[dispatch])
+    
+    
 
     const startTrivia = async () => {
+        dispatch(processUserGame({name:'sandra', questions: items}))
         setgameOver(false);
         setQuestionsItems(items);
         setScore(0)
@@ -63,11 +79,15 @@ const useGame = () =>{
                 correctAnswer: questionsItems[number].question.correct_answer
             }
             setUserAnswers(preState => [...preState, answerObject])
+
+            dispatch(processUserGame({...currentUserGame, score: score, questionNumber: number+1, time: seconds}))
         }
 
     }
 
     const nextQuestion = () => {
+
+        dispatch(processUserGame({...currentUserGame, score: score, questionNumber: number+1, time: seconds}))
 
         reStart() 
 
@@ -82,7 +102,10 @@ const useGame = () =>{
 
     }
 
-    return { startTrivia, checkAnswer, nextQuestion, gameOver, questionsItems, number, score, userAnswers, seconds, status }
+
+
+
+    return { startTrivia, checkAnswer, nextQuestion, gameOver, questionsItems, number, score, userAnswers, seconds, status, currentUserGame }
 
 }
 
