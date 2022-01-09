@@ -1,7 +1,7 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from "react-redux";
 import { store } from './redux/store';
-import { Home } from './pages';
+import { Dashboard, Home } from './pages';
 import { GlobalStyle } from './styles/GlobalStyle';
 
 
@@ -12,6 +12,7 @@ function App() {
       <GlobalStyle/>
       <BrowserRouter>
         <Switch>
+        <Route path="/dashboard" component={Dashboard} />
           <Route path="/" component={Home} />
         </Switch>
       </BrowserRouter>

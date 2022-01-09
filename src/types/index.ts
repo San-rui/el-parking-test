@@ -29,3 +29,15 @@ export type AnswerObject = {
     correct: boolean,
     correctAnswer: string,
 }
+
+export type UserGame ={
+    name: string,
+    questionNumber?: number,
+    questions?: QuestionState[],
+    score?: number,
+    time?:number,
+}
+
+export type StoreUser={
+    userGame:UserGame,
+}

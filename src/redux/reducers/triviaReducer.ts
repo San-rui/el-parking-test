@@ -27,7 +27,7 @@ export const triviaReducer = (state = intialState, action: TriviaReducer) => {
             return {
                 ...state,
                 loading: false,
-                error: "No se pudo el listado de cinema"
+                error: "No se pudo mostrar las preguntas"
             }
 
         default : return state
