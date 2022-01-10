@@ -14,13 +14,14 @@ type Store={
 const useTrivia = () =>{
 
     const dispatch = useDispatch()
-    const  { items, loading }  = useSelector((state: Store) => state.trivia)
+    const  { items, loading }  = useSelector((state: Store) => state.trivia);
 
     useEffect ( () => {
 
-        dispatch(processTrivia('medium'))
+        const number = (Math.floor(Math.random() * (32 - 9 + 1) + 9))
+        dispatch(processTrivia('medium', number))
 
-    },[dispatch])
+    },[ dispatch ])
 
     return { items, loading }
 
