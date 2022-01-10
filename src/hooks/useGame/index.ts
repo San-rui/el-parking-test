@@ -50,7 +50,8 @@ const useGame = () =>{
     },[dispatch])
     
     const startTrivia = async () => {
-        dispatch(processUserGame({ name:name, questions: items }))
+        console.log(items[1].question.category)
+        dispatch(processUserGame({ name:name, questions: items, category: items[1].question.category}))
         setgameOver(false);
         setQuestionsItems(items);
         setScore(0)

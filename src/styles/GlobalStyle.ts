@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        background-color: #83c5be;
+        background-color: #22577a;
         display: flex;
         justify-content: center;
         font-family: 'Sansita', sans-serif;
