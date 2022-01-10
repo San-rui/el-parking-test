@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Link } from "react-router-dom";
 import { CardQuestion, ProgressBar } from "../../components/common";
 import { Layout } from "../../components/layout";
-import { useGame, useTime, useTrivia } from "../../hooks";
+import { useGame, useTrivia } from "../../hooks";
 import { Wrapper } from "../../styles/HomeStyle";
 
 const Home :FC= () =>{
@@ -26,7 +26,7 @@ const Home :FC= () =>{
                 
                 { gameOver || userAnswers.length ===10 ? (<button className="start" onClick={startTrivia}> Start Game</button>) : null }
                 { loading && <p className="loading"> Loading questions...</p>}
-                { !loading && !gameOver && (<p>Hi {currentUserGame.name} this is your question number {number + 1}</p>)}
+                { !loading && !gameOver && (<p>Hi {currentUserGame.name} the category is {questionsItems[number].question.category}</p>)}
                 { !loading && !gameOver && (
                     <CardQuestion 
                     questionNumber={number + 1}

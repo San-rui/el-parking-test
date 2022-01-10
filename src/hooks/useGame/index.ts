@@ -18,7 +18,8 @@ const useGame = () =>{
     const [ score, setScore] = useState (0);
     const [userAnswers, setUserAnswers] = useState <AnswerObject[]> ([]);
     const [status, setStatus] = useState('active');
-    const [name, setName] = useState('')
+    const [name, setName] = useState('');
+
 
     useEffect(() => {
         
