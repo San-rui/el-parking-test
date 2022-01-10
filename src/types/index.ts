@@ -37,6 +37,7 @@ export type UserGame ={
     score?: number,
     time?:number,
     level?: string,
+    category?:string,
 }
 
 export type StoreUser={
