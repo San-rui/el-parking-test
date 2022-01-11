@@ -3,16 +3,18 @@ import { Link } from "react-router-dom";
 import { Layout } from "../../components/layout";
 import { useGame, useTrivia } from "../../hooks";
 import { StartWrapper } from "../../styles/StartStyle";
+import { UserGame } from "../../types";
 
 
 const Start :FC= () =>{
 
-    const { startTrivia, currentUserGame, setName } = useGame()
+    const { startTrivia, setName, name } = useGame()
     const { loading } = useTrivia();
+    const dataGameUser: UserGame = JSON.parse(localStorage.getItem('user-session') || '{}');
 
 
     return(
-        <Layout>
+        <Layout hidenHeader>
             <StartWrapper>
                 <h1 className="title-quiz">El Parking Quiz</h1>
                 
@@ -20,7 +22,7 @@ const Start :FC= () =>{
                     className="input-name"
                     type="text" name="name" 
                     placeholder="Enter your name" 
-                    value={currentUserGame.name}
+                    value={ name }
                     onChange={e =>{ 
                         setName(e.target.value)
                     }}

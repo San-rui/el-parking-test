@@ -4,9 +4,11 @@ export const StartWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     background-color: #03071e;
     color: #e9ecef;
+    width: 100%;
+    height: 93vh;
 
     .nav-link{
         text-decoration: none;

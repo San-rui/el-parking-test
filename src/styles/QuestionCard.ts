@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-    max-width: 30rem;
+    max-width: 45rem;
     width: 100%;
     background-color: #dae3e5;
     backdrop-filter: blur(12px);
@@ -27,7 +27,7 @@ export const Wrapper = styled.div`
     }
 
     .container-options-button{
-        width: 100%;
+        width: 80%;
     }
 `
 type ButtonProps ={
