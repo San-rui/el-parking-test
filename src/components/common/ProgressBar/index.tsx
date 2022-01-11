@@ -22,7 +22,7 @@ const ProgressBar: FC <Props>= ({ percent, status }) => {
                     error: {
                         symbol: '💀',
                         trailColor: 'pink',
-                        color: 'red'
+                        color: '#ff0a54'
                     },
                     default: {
                         symbol: nunber + '%',
@@ -31,13 +31,13 @@ const ProgressBar: FC <Props>= ({ percent, status }) => {
                     },
                     active: {
                         symbol: '😀',
-                        trailColor: 'yellow',
-                        color: 'orange'
+                        trailColor: '#f4d35e',
+                        color: '#fe7f2d'
                     },
                     success: {
                         symbol: '⭐️',
-                        trailColor: 'lime',
-                        color: 'green'
+                        trailColor: '#b8dbd9',
+                        color: '#00a6a6'
                     }
                 }
             }

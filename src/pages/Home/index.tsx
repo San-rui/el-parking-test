@@ -13,9 +13,10 @@ const Home :FC= () =>{
     return(
         <Layout>
             <Wrapper>
-                <h1>El Parking Quiz</h1>
+                <h1 className="title-quiz">El Parking Quiz</h1>
                 
-                { gameOver || userAnswers.length ===10 ? (<input id="name" 
+                { gameOver ? (<input id="name"
+                    className="input-name"
                     type="text" name="name" 
                     placeholder="Enter your name" 
                     value={currentUserGame.name}
@@ -24,9 +25,9 @@ const Home :FC= () =>{
                     }}
                 />) : null }
                 
-                { gameOver || userAnswers.length ===10 ? (<button className="start" onClick={startTrivia}> Start Game</button>) : null }
+                { gameOver ? (<button className="start" onClick={startTrivia}> Start Game</button>) : null }
                 { loading && <p className="loading"> Loading questions...</p>}
-                { !loading && !gameOver && (<p>Hi {currentUserGame.name} the category is {questionsItems[number].question.category}</p>)}
+                { !loading && !gameOver && (<p className="hi-user">Hi {currentUserGame.name} the category is {questionsItems[number].question.category}</p>)}
                 { !loading && !gameOver && (
                     <CardQuestion 
                     questionNumber={number + 1}
@@ -42,7 +43,7 @@ const Home :FC= () =>{
                 { !gameOver ? <p className="score">Partial Score: {score}</p> : null }
                 { !loading && !gameOver &&  (<p className="score">Time: {seconds}</p>)}
                 { !loading && !gameOver &&  (<ProgressBar percent={(seconds*100)/30} status={status}/>)}
-                { userAnswers.length ===10 ? (<Link to='./dashboard'> Go to Results</Link>) : null }
+                { userAnswers.length ===10 ? (<Link className="link" to='./dashboard'> Go to Results</Link>) : null }
             </Wrapper>
             
         </Layout>

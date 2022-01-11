@@ -26,8 +26,8 @@ const CardQuestion :FC <Props> = ({
             <p className="number">
                 Question: {questionNumber} / {totalQuestions}
             </p>
-            <p dangerouslySetInnerHTML={{__html: question}}/>
-            <div>
+            <p className="question" dangerouslySetInnerHTML={{__html: question}}/>
+            <div className="container-options-button">
                 {answers.map(answer => (
                     <Button 
                         key={answer}
