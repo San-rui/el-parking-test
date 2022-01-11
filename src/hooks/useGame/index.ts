@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useTime, useTrivia } from "..";
-import {  AnswerObject, QuestionState, StoreUser } from "../../types";
-import { processUserGame } from "../../redux/actions/userGame";
+import {  AnswerObject, QuestionState, UserGame } from "../../types";
+import { useHistory } from "react-router-dom";
 
 
 const useGame = () =>{
 
-    const currentUserGame =useSelector((store:StoreUser)=>store.userGame);
-    const dispatch = useDispatch();
+    const dataGameUser: UserGame = JSON.parse(localStorage.getItem('user-session') || '{}');
+    const { push }= useHistory();
+
 
     const { seconds, reStart, stopTime   } = useTime();
 
@@ -19,7 +19,7 @@ const useGame = () =>{
     const [userAnswers, setUserAnswers] = useState <AnswerObject[]> ([]);
     const [status, setStatus] = useState('active');
     const [name, setName] = useState('');
-
+    const [answerResult, setAnswersResult]= useState<string[]>()
 
     useEffect(() => {
         
@@ -27,7 +27,7 @@ const useGame = () =>{
             nextQuestion()
         }
 
-    },[ gameOver, seconds ])
+    },[ dataGameUser.gameOver, seconds ])
 
     useEffect(()=>{
 
@@ -40,71 +40,89 @@ const useGame = () =>{
         }
 
     },[seconds])
+
     
     const  { items }  = useTrivia();
-    
-    useEffect ( () => {
 
-        dispatch(processUserGame( currentUserGame ))
-
-    },[dispatch])
+    //----FUNCION PARA INICIAR EL JUEGO-------
     
     const startTrivia = async () => {
-        console.log(items[1].question.category)
-        dispatch(processUserGame({ name:name, questions: items, category: items[1].question.category}))
+
+        localStorage.setItem('user-session', JSON.stringify({ name:name, questions: items, category: items[1].question.category, gameOver: false, questionNumber: number}))
         setgameOver(false);
-        setQuestionsItems(items);
+        setQuestionsItems(dataGameUser.questions);
         setScore(0)
         setNumber(0);
         setUserAnswers([])
-        reStart() 
-        
+        reStart()
+
+        push('/home')
     }
 
+    //----FUNCION PARA CHECKEAR LAS RESPUESTAS-------
+
     const checkAnswer = (e: React.MouseEvent<HTMLButtonElement> ) => {
-        if( !gameOver ){
+
+        if( !dataGameUser.gameOver ){
+
+            setNumber(dataGameUser.questionNumber);
+            
             
             stopTime () 
 
             const answer = e.currentTarget.value;
-            const correct =questionsItems[number].question.correct_answer === answer;
+            const correct =dataGameUser.questions[number].question.correct_answer=== answer
+
+            const array=answerResult? answerResult : []
+            array.push(`${correct}`)
+            setAnswersResult(array)
 
             if( correct ) setScore(preState => preState +1)
 
             const answerObject = {
-                question: questionsItems[number].question.question,
+                question: dataGameUser.questions[number].question.question,
                 answer,
                 correct,
-                correctAnswer: questionsItems[number].question.correct_answer
+                correctAnswer: dataGameUser.questions[number].question.correct_answer
             }
             setUserAnswers(preState => [...preState, answerObject])
-
-            dispatch(processUserGame({...currentUserGame, score: score, questionNumber: number+1, time: seconds}))
+            localStorage.setItem('user-session', JSON.stringify({ ...dataGameUser, score: score, questionNumber: number+1, time: seconds, totalResults: userAnswers}));
         }
-
     }
+
+    //----FUNCION PARA PASAR A LA PREGUNTA SIGUIENTE------
 
     const nextQuestion = () => {
 
-        dispatch(processUserGame({...currentUserGame, score: score, questionNumber: number+1, time: seconds}))
-
-        reStart() 
+        reStart()
+        setNumber(dataGameUser.questionNumber) 
+        const newNumber= dataGameUser.questionNumber
 
         const nextQuestion = number +1;
 
         if(nextQuestion === 10){
+
             setgameOver(true);
+            localStorage.setItem('user-session', JSON.stringify({ ...dataGameUser, gameOver: true}))
 
         } else {
-            setNumber(nextQuestion);
-        }
 
+            console.log(number, nextQuestion)
+
+            setNumber(nextQuestion);
+            localStorage.setItem('user-session', JSON.stringify({ ...dataGameUser, score: score, time: seconds, questionNumber: nextQuestion, totalResults: userAnswers}))
+
+        }
     }
 
+    const goDashboard =()=>{
 
+        localStorage.setItem('user-session', JSON.stringify({ ...dataGameUser, score: score, time: seconds, questionNumber: nextQuestion, totalResults: userAnswers}))
 
+        push('./dashboard')
+    }
 
-    return { startTrivia, checkAnswer, nextQuestion, gameOver, questionsItems, number, score, userAnswers, seconds, status, currentUserGame, setName }
+    return { startTrivia, checkAnswer, nextQuestion, gameOver, questionsItems, number, score, userAnswers, seconds, status, setName, name, goDashboard }
 
 }
 

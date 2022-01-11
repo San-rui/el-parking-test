@@ -32,12 +32,14 @@ export type AnswerObject = {
 
 export type UserGame ={
     name: string,
-    questionNumber?: number,
-    questions?: QuestionState[],
+    questionNumber: number,
+    questions: QuestionState[],
     score?: number,
     time?:number,
     level?: string,
     category?:string,
+    gameOver?:boolean,
+    totalResults: AnswerObject[],
 }
 
 export type StoreUser={
