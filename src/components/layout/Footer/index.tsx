@@ -1,11 +1,17 @@
 import { FC } from "react";
+import { FooterWrapper } from "../../../styles/FotterStyle";
 
 const Footer:FC = ()=>{
     return (
-        <footer className="footer">
-            soy el footer
-            
-        </footer>
+        <FooterWrapper>
+            <footer className="footer">
+                <p>
+                    <span>Made with love by</span>
+                    <span> San</span>
+
+                </p>
+            </footer>
+        </FooterWrapper>
     )
 }
 
