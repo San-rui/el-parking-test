@@ -1,15 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-    html {
-        height: 100%;
-    }
 
     body {
-        background-color: #22577a;
-        display: flex;
-        justify-content: center;
         font-family: 'Sansita', sans-serif;
+        height: auto;
     }
 
     *{

@@ -7,8 +7,8 @@ export const Wrapper = styled.div`
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter:blur(12px);
     border-radius: 2rem;
-    padding: 2rem;
-    margin: 2rem;
+    padding: 1rem;
+    margin: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,7 +50,7 @@ export const Button = styled.div<ButtonProps>`
         font-size:1.3rem;
         color: #ffffff;
         width: 100%;
-        padding: 1rem;
+        padding: 0.5rem;
         margin: 1rem 0;
         background: ${ ({correct, userClick})=>
             correct

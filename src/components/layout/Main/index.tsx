@@ -1,11 +1,12 @@
 import { FC } from 'react';
+import { MainWrapper } from '../../../styles/MainStyle';
 
 const Main:FC = ({children}) => {
 
     return (
-            <main className="main">
+            <MainWrapper>
                 { children }
-            </main>
+            </MainWrapper>
     )
 }
 
