@@ -10,8 +10,9 @@ export const NavWrapper = styled.div`
 
     .nav-link{
         text-decoration: none;
-        margin-right:1rem ;
+        margin-right:2rem ;
         color: #e9ecef;
+        font-size:1.5rem;
     }
 
 `

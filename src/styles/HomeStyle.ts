@@ -98,4 +98,21 @@ export const Wrapper = styled.div`
         align-items: center;
         font-family: 'Sansita', sans-serif;
     }
+
+    .container-result{
+        background-color: #dae3e5;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter:blur(12px);
+        border-radius: 2rem;
+        padding: 1rem;
+        width: 50%;
+        margin: 1rem;
+        color: #03071e;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .result{
+        margin: 0.5rem;
+    }
 `
