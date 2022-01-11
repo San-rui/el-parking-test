@@ -5,7 +5,7 @@ import { Wrapper } from "../../styles/DashboardStyle";
 
 const Dashboard :FC= () =>{
 
-    const { currentUserGame, startTrivia, checkAnswer, nextQuestion, gameOver, questionsItems, number, score, userAnswers, seconds, status } = useGame()
+    const { currentUserGame } = useGame()
 
     return(
         <Layout>

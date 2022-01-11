@@ -3,17 +3,31 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
     max-width: 30rem;
     width: 100%;
-    background-color: #ffffff10;
+    background-color: #dae3e5;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter:blur(12px);
     border-radius: 2rem;
     padding: 2rem;
     margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 1px 12px 0px rgba(180,182,189,0.75);
     
-    >p{
-        color: #14213d;
+    .number{
+        color: #03071e;
         font-size: 1.5rem;
+    }
 
+    .question{
+        color: #F2545B;
+        font-size: 1.7rem;
+        margin: 1rem;
+    }
+
+    .container-options-button{
+        width: 100%;
     }
 `
 type ButtonProps ={
@@ -29,6 +43,7 @@ export const Button = styled.div<ButtonProps>`
     }
 
     button {
+        width: 100%;
         font-family: 'Sansita', sans-serif;
         cursor: pointer;
         user-select: none;
@@ -39,15 +54,14 @@ export const Button = styled.div<ButtonProps>`
         margin: 1rem 0;
         background: ${ ({correct, userClick})=>
             correct
-            ? 'green'
+            ? '#02c39a'
             : !correct && userClick
-            ? 'red'
-            : '#ffbf69'
+            ? '#ff595e'
+            : '#ffb703'
         };
         border: none;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         border-radius:2rem;
-
     }
 
     button:hover{
