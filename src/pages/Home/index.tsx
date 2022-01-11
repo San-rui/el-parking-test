@@ -7,29 +7,14 @@ import { Wrapper } from "../../styles/HomeStyle";
 
 const Home :FC= () =>{
 
-    const { startTrivia, checkAnswer, nextQuestion, gameOver, questionsItems, number, score, userAnswers, seconds, status, currentUserGame, setName } = useGame()
-    const { loading } = useTrivia();
+    const { checkAnswer, nextQuestion, questionsItems, number, score, userAnswers, seconds, status, currentUserGame} = useGame()
 
     return(
         <Layout>
             <Wrapper>
-                <h1 className="title-quiz">El Parking Quiz</h1>
+                <p className="hi-user">Hi {currentUserGame.name} the category is {questionsItems[number].question.category}</p>
                 
-                { gameOver ? (<input id="name"
-                    className="input-name"
-                    type="text" name="name" 
-                    placeholder="Enter your name" 
-                    value={currentUserGame.name}
-                    onChange={e =>{ 
-                        setName(e.target.value)
-                    }}
-                />) : null }
-                
-                { gameOver ? (<button className="start" onClick={startTrivia}> Start Game</button>) : null }
-                { loading && <p className="loading"> Loading questions...</p>}
-                { !loading && !gameOver && (<p className="hi-user">Hi {currentUserGame.name} the category is {questionsItems[number].question.category}</p>)}
-                { !loading && !gameOver && (
-                    <CardQuestion 
+                <CardQuestion 
                     questionNumber={number + 1}
                     totalQuestions={ 10 }
                     question= { questionsItems[number].question.question}
@@ -37,15 +22,14 @@ const Home :FC= () =>{
                     userAnswer ={ userAnswers ? userAnswers[number] : undefined}
                     callback={checkAnswer}
                 />
-                )}
                 
-                { !gameOver && !loading && userAnswers.length === number +1 && number !== 9? (<button className="next" onClick={nextQuestion}> Next Question</button>): null}
-                { !gameOver ? <p className="score">Partial Score: {score}</p> : null }
-                { !loading && !gameOver &&  (<p className="score">Time: {seconds}</p>)}
-                { !loading && !gameOver &&  (<ProgressBar percent={(seconds*100)/30} status={status}/>)}
+                { userAnswers.length === number +1 && number !== 9? (<button className="next" onClick={nextQuestion}> Next Question</button>): null}
+                <p className="score">Partial Score: {score}</p> 
+                <p className="score">Time: {seconds}</p>
+                <ProgressBar percent={(seconds*100)/30} status={status}/>
                 { userAnswers.length ===10 ? (<Link className="link" to='./dashboard'> Go to Results</Link>) : null }
-            </Wrapper>
             
+            </Wrapper>
         </Layout>
     )
 }

@@ -8,7 +8,7 @@ const Nav:FC = () => {
         <NavWrapper>
             <div className="nav">
                 <Link className="nav-link" to="./dashboard">Partial Results</Link>
-                <Link className="nav-link" to="./">Home</Link>
+                <Link className="nav-link" to="./home">Home</Link>
             </div>
         </NavWrapper>
         
