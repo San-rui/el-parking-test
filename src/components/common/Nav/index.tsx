@@ -10,9 +10,7 @@ const Nav:FC = () => {
     return (
         <NavWrapper>
             <div className="nav">
-                <Link className="nav-link" to="./dashboard">Partial Results</Link>
                 <Link className="nav-link" to="./">New Game</Link>
-                { dataGameUser.questionNumber !==10 && <Link className="nav-link" to="./home">Home</Link>}
             </div>
         </NavWrapper>
         

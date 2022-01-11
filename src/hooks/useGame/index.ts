@@ -9,7 +9,6 @@ const useGame = () =>{
     const dataGameUser: UserGame = JSON.parse(localStorage.getItem('user-session') || '{}');
     const { push }= useHistory();
 
-
     const { seconds, reStart, stopTime   } = useTime();
 
     const [ gameOver, setgameOver] = useState (true);
@@ -25,6 +24,14 @@ const useGame = () =>{
         
         if(seconds===0){
             nextQuestion()
+            const answerObject = {
+                question: dataGameUser.questions[number].question.question,
+                answer: 'empty',
+                correct: false,
+                correctAnswer: dataGameUser.questions[number].question.correct_answer,
+            }
+            setUserAnswers(preState => [...preState, answerObject])
+            localStorage.setItem('user-session', JSON.stringify({ ...dataGameUser, totalResults: userAnswers}));
         }
 
     },[ dataGameUser.gameOver, seconds ])
@@ -96,7 +103,6 @@ const useGame = () =>{
 
         reStart()
         setNumber(dataGameUser.questionNumber) 
-        const newNumber= dataGameUser.questionNumber
 
         const nextQuestion = number +1;
 
@@ -122,7 +128,7 @@ const useGame = () =>{
         push('./dashboard')
     }
 
-    return { startTrivia, checkAnswer, nextQuestion, gameOver, questionsItems, number, score, userAnswers, seconds, status, setName, name, goDashboard }
+    return { startTrivia, checkAnswer, nextQuestion,  number, score, userAnswers, seconds, status, setName, name, goDashboard }
 
 }
 

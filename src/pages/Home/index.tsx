@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import { CardQuestion, ProgressBar } from "../../components/common";
+import { CardQuestion, CardResults, ProgressBar } from "../../components/common";
 import { Layout } from "../../components/layout";
 import { useGame } from "../../hooks";
 import { Wrapper } from "../../styles/HomeStyle";
@@ -32,7 +32,15 @@ const Home :FC= () =>{
                 <p className="score">Time: {seconds}</p>
                 <ProgressBar percent={(seconds*100)/30} status={status}/>
                 { dataGameUser.questionNumber ===10 ? (<button className="link" onClick={goDashboard}> Go to Results</button>) : null }
-            
+
+                { dataGameUser.totalResults?.length>0 && <div className="container-result">
+                    {dataGameUser.totalResults?.map((answer, index) => (
+                        <div className="result">
+                            <p>{index+1}-  {`${answer.correct}`}</p>
+                        </div>
+                        
+                    ))}
+                </div>}
             </Wrapper>
         </Layout>
     )

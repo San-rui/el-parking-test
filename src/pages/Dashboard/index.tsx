@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { CardResults } from "../../components/common";
 import { Layout } from "../../components/layout";
 import { Wrapper } from "../../styles/DashboardStyle";
 import { UserGame } from "../../types";
@@ -20,6 +21,7 @@ const Dashboard :FC= () =>{
                     <h3 className='text'>Final Score</h3>
                     <p className='text-score'>{dataGameUser.score}</p>
                 </div>
+                <CardResults answers={dataGameUser.totalResults}/>
 
             </Wrapper>
 
