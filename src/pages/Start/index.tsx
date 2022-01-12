@@ -1,17 +1,13 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
 import { Layout } from "../../components/layout";
 import { useGame, useTrivia } from "../../hooks";
 import { StartWrapper } from "../../styles/StartStyle";
-import { UserGame } from "../../types";
 
 
 const Start :FC= () =>{
 
     const { startTrivia, setName, name } = useGame()
     const { loading } = useTrivia();
-    const dataGameUser: UserGame = JSON.parse(localStorage.getItem('user-session') || '{}');
-
 
     return(
         <Layout hidenHeader>
@@ -30,7 +26,6 @@ const Start :FC= () =>{
                 
                 <button className="start" onClick={startTrivia}> Start Game</button>
                 { loading && <p className="loading"> Loading questions...</p>}
-
             </StartWrapper>
         </Layout>
     )

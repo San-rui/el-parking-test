@@ -41,7 +41,3 @@ export type UserGame ={
     gameOver?:boolean,
     totalResults: AnswerObject[],
 }
-
-export type StoreUser={
-    userGame:UserGame,
-}

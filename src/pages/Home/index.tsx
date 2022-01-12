@@ -1,6 +1,5 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
-import { CardQuestion, CardResults, ProgressBar } from "../../components/common";
+import { CardQuestion,  ProgressBar } from "../../components/common";
 import { Layout } from "../../components/layout";
 import { useGame } from "../../hooks";
 import { Wrapper } from "../../styles/HomeStyle";
@@ -11,7 +10,6 @@ const Home :FC= () =>{
     const dataGameUser: UserGame = JSON.parse(localStorage.getItem('user-session') || '{}');
     
     const { checkAnswer, nextQuestion, number, score, userAnswers, seconds, status , goDashboard} = useGame()
-
 
     return(
         <Layout>
