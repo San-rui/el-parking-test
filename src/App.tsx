@@ -4,8 +4,6 @@ import { store } from './redux/store';
 import { Dashboard, Home, Start } from './pages';
 import { GlobalStyle } from './styles/GlobalStyle';
 
-
-
 function App() {
   return (
     <Provider store={store}>

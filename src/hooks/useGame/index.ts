@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
 import { useTime, useTrivia } from "..";
-import {  AnswerObject, QuestionState, UserGame } from "../../types";
+import {  AnswerObject,  UserGame } from "../../types";
 import { useHistory } from "react-router-dom";
-
 
 const useGame = () =>{
 
     const dataGameUser: UserGame = JSON.parse(localStorage.getItem('user-session') || '{}');
     const { push }= useHistory();
-
     const { seconds, reStart, stopTime   } = useTime();
-
-    const [ gameOver, setgameOver] = useState (true);
-    const [questionsItems, setQuestionsItems] = useState <QuestionState[]>([]);
     const [number, setNumber] = useState (0);
     const [ score, setScore] = useState (0);
     const [userAnswers, setUserAnswers] = useState <AnswerObject[]> ([]);
@@ -56,13 +51,10 @@ const useGame = () =>{
     const startTrivia = async () => {
 
         localStorage.setItem('user-session', JSON.stringify({ name:name, questions: items, category: items[1].question.category, gameOver: false, questionNumber: number}))
-        setgameOver(false);
-        setQuestionsItems(dataGameUser.questions);
         setScore(0)
         setNumber(0);
         setUserAnswers([])
         reStart()
-
         push('/home')
     }
 
@@ -73,7 +65,6 @@ const useGame = () =>{
         if( !dataGameUser.gameOver ){
 
             setNumber(dataGameUser.questionNumber);
-            
             
             stopTime () 
 
@@ -108,16 +99,12 @@ const useGame = () =>{
 
         if(nextQuestion === 10){
 
-            setgameOver(true);
             localStorage.setItem('user-session', JSON.stringify({ ...dataGameUser, gameOver: true}))
 
         } else {
 
-            console.log(number, nextQuestion)
-
             setNumber(nextQuestion);
             localStorage.setItem('user-session', JSON.stringify({ ...dataGameUser, score: score, time: seconds, questionNumber: nextQuestion, totalResults: userAnswers}))
-
         }
     }
 
